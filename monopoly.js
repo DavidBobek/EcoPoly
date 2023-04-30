@@ -1885,7 +1885,7 @@ function collectfromeachplayer(amount, cause) {
 
 	addAlert(p.name + " received $" + total + " from " + cause + ".");
 }
-
+//destination:int
 function advance(destination, pass) {
 	var p = player[turn];
 
@@ -1904,6 +1904,35 @@ function advance(destination, pass) {
 		p.position = destination;
 		p.money += 200;
 		addAlert(p.name + " collected a $200 salary for passing GO.");
+	}
+
+	land();
+}
+
+////destination:int
+function travelling(destination, pass,travelling_method) {
+	//travelling_method is a string that is passed as a parameter to the function depending on the amount of travel places u have, if I have 2 travel places, I will have to pay 2 tokens
+	var p = player[turn];
+
+	if (typeof pass === "number") {
+		if (p.position < pass) {
+			p.position = pass;
+		} else {
+			p.position = pass;
+			addAlert(p.name + " Travelling ");
+			// enviromental impact
+			//bike train car plane 
+			//if travelling_method == "bike": than 
+			//if travelling_method == "train": than
+			//if travelling_method == "car": than
+			//if travelling_method == "plane": than
+		}
+	}
+	if (p.position < destination) {
+		p.position = destination;
+	} else {
+		p.position = destination;
+		addAlert(p.name + " Travelling! ");
 	}
 
 	land();
