@@ -1896,6 +1896,7 @@ function advance(destination, pass) {
 
 ////destination:int
 function travelling(destination, pass,travelling_method) {
+	//travelling_method is a string that is passed as a parameter to the function depending on the amount of travel places u have, if I have 2 travel places, I will have to pay 2 tokens
 	var p = player[turn];
 
 	if (typeof pass === "number") {
