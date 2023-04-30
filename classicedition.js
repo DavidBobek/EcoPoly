@@ -36,7 +36,7 @@ function Card(text, action) {
 }
 
 function corrections() {
-  document.getElementById("cell1name").textContent = "Mediter-ranean Avenue";
+
 
   // Add images to enlarges.
   document.getElementById("enlarge5token").innerHTML +=
@@ -88,7 +88,7 @@ square[7] = new Square("Chance", "FOLLOW INSTRUCTIONS ON TOP CARD", "#FFFFFF");
 square[8] = new Square("Watch", "$100", "#87CEEB", 100, 4, 6, 30, 90, 270, 400, 550, 2);
 square[9] = new Square("Smart Watch", "$120", "#87CEEB", 120, 4, 8, 40, 100, 300, 450, 600, 2);
 square[10] = new Square("Just Visiting", "", "#FFFFFF");
-square[11] = new Square("Walkmen", "$140", "#FF0080", 140, 5, 10, 50, 150, 450, 625, 750, 4);
+square[11] = new Square("Walkman", "$140", "#FF0080", 140, 5, 10, 50, 150, 450, 625, 750, 4);
 square[12] = new Square("Fusion Reactor", "$150", "#FFFFFF", 150, 2);
 square[13] = new Square("Mp3", "$140", "#FF0080", 140, 5, 10, 50, 150, 450, 625, 750, 4);
 square[14] = new Square("Spotify", "$160", "#FF0080", 160, 5, 12, 60, 180, 500, 700, 900, 4);
@@ -137,6 +137,23 @@ communityChestCards[12] = new Card("It is your birthday. Collect $10 from every 
 communityChestCards[13] = new Card("Advance to \"GO\" (Collect $200).", function() { advance(0);});
 communityChestCards[14] = new Card("You research facilities areon strike. Pay $40 per lab. $115 per research facility.", function() { streetrepairs(40, 115);});
 communityChestCards[15] = new Card("Go to Jail. Go directly to Jail. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
+
+chanceCards[0] = new Card("GET OUT OF JAIL FREE. This card may be kept until needed or traded.", function(p) { p.chanceJailCard=true; updateOwned();});
+chanceCards[1] = new Card("Your Facilities need new technoligcal equipment. For each lab pay $25. For each research facility $100.", function() { streetrepairs(25, 100);});
+chanceCards[2] = new Card("Eco fine $15.", function() { subtractamount(15, 'Chance');});
+chanceCards[3] = new Card("You have been elected chairman of the board. Pay each player $50.", function() { payeachplayer(50, 'Chance');});
+chanceCards[4] = new Card("Go back three spaces.", function() { gobackthreespaces();});
+chanceCards[5] = new Card("ADVANCE TO THE NEAREST UTILITY. IF UNOWNED, you may buy it from the Bank. IF OWNED, throw dice and pay owner a total ten times the amount thrown.", function() { advanceToNearestUtility();});
+chanceCards[6] = new Card("Bank pays you dividend of $50.", function() { addamount(50, 'Chance');});
+chanceCards[7] = new Card("ADVANCE TO THE NEAREST RAILROAD. If UNOWNED, you may buy it from the Bank. If OWNED, pay owner twice the rental to which they are otherwise entitled.", function() { advanceToNearestRailroad();});
+chanceCards[8] = new Card("Pay poor tax of $15.", function() { subtractamount(15, 'Chance');});
+chanceCards[9] = new Card("Take a trip to SMART WATCH If you pass \"GO\" collect $200.", function() { advance(9);});
+chanceCards[10] = new Card("ADVANCE to Crypto", function() { advance(39);});
+chanceCards[11] = new Card("ADVANCE to Mobile Phone If you pass \"GO\" collect $200.", function() { advance(23);});
+chanceCards[12] = new Card("Your building loan matures. Collect $150.", function() { addamount(150, 'Chance');});
+chanceCards[13] = new Card("Take a trip to Spotify If you pass \"GO\" collect $200.", function() { advance(14);});
+chanceCards[14] = new Card("ADVANCE to Walkman. If you pass \"GO\" collect $200.", function() { advance(11);});
+chanceCards[15] = new Card("Go to Jail. Go Directly to Jail. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
 
 const tokenFieldIndexes = {
   2: [1, 3, 6, 7, 8, 9],

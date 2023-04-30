@@ -2458,7 +2458,7 @@ function land(increasedRent) {
 		chanceCommunityChest();
 	}
 
-	//implementing the travel on Railroads
+	//implementing the travel on Railroads = need to fix
 	//if some player lands on a railroad, he is moved to field 5, 15, 25 or 35
 	if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
 		//pop up window with the message "You are travelling to field 5, 15, 25 or 35" and a button "OK" and an input field for the actual number of the field
@@ -2473,14 +2473,12 @@ function land(increasedRent) {
 		if (gathered_position == 5 || gathered_position == 15 || gathered_position == 25 || gathered_position == 35) {
 			p.position = gathered_position;
 			updatePosition();
-			updateOwned();
-			updateMoney();
-			chanceCommunityChest();
 		} else {
 			p.position = p.position;
 		
 		
 		}
+		updatePosition();
 
 	}
 
