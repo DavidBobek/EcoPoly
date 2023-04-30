@@ -1910,7 +1910,7 @@ function advance(destination, pass) {
 }
 
 ////destination:int
-function travelling(destination, pass,travelling_method) {
+function travelling(destination,travelling_method, pass) {
 	//travelling_method is a string that is passed as a parameter to the function depending on the amount of travel places u have, if I have 2 travel places, I will have to pay 2 tokens
 	var p = player[turn];
 
@@ -2359,7 +2359,7 @@ function land(increasedRent) {
 		var groupowned = true;
 		var rent;
 
-		// Railroads
+		// Railroads = this is the idiot we need to modify
 		if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
 			if (increasedRent) {
 				rent = 25;
@@ -2456,6 +2456,18 @@ function land(increasedRent) {
 		p.AI.alertList = "";
 	} else {
 		chanceCommunityChest();
+	}
+
+	//implementing the travel on Railroads
+	//if some player lands on a railroad, he can freely choose to travel to another railroad
+	if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
+		if (p.human) {
+			popup("<div>You landed on <a href='javascript:void(0);' onmouseover='showdeed(" + p.position + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>.<input type='button' onclick='travel();' value='Travel' title='Travel to another railroad.'/></div>", travel);
+		} else {
+			if (p.AI.travel()) {
+				travel();
+			}
+		}
 	}
 }
 
