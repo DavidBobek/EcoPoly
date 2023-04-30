@@ -1112,6 +1112,7 @@ function Player(name, color) {
 	this.color = color;
 	this.position = 0;
 	this.money = 1500;
+	this.tokens = 0;
 	this.creditor = -1;
 	this.jail = false;
 	this.jailroll = 0;
@@ -1120,6 +1121,20 @@ function Player(name, color) {
 	this.bidding = true;
 	this.human = true;
 	// this.AI = null;
+
+	this.checkTokens = function	(futureTokens){
+		if(this.tokens + futureTokens <= 30)
+		{
+			return true;
+		}
+
+	}
+	this.addTokens = function	(tokens){
+		this.tokens += tokens;
+	}
+	this.removeTokens = function	(tokens){
+		this.tokens -= tokens;
+	}
 
 	this.pay = function (amount, creditor) {
 		if (amount <= this.money) {
