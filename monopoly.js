@@ -2104,7 +2104,7 @@ function buyHouse(index) {
 		}
 
 		p.pay(sq.houseprice, 0);
-
+		addTokens();
 		updateOwned();
 		updateMoney();
 	}
@@ -2124,6 +2124,7 @@ function sellHouse(index) {
 	}
 
 	p.money += sq.houseprice * 0.5;
+	removeTokens(houseTokens);
 	updateOwned();
 	updateMoney();
 }
