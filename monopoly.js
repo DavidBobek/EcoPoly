@@ -2465,28 +2465,29 @@ function land(increasedRent) {
 		//if the number is correct, the player is moved to the field and the game continues
 		//if the number is incorrect, the player is moved to the field and the game continues
 		//if the player is moved to the field, he has to pay the rent for the field
-
+		checker = 0;
 		
 
 		window.alert("You are travelling to field 5, 15, 25 or 35");
 		var gathered_position = window.prompt("Please enter the number of the field you want to travel to", "5, 15, 25 or 35");
 		if (gathered_position == 5 || gathered_position == 15 || gathered_position == 25 || gathered_position == 35) {
-			
-			const value = parseInt(gatgered_position);
-			console.log(value);
-  
-			// Check if the parsed value is an integer
-			if (!isNaN(value) && Number.isInteger(value)) {
-				p.position = value
-				updatePosition();
-				updateOwned();
-				updateMoney();
-			} 
-			else {
-				p.position = gathered_position;
+			if (checker == 0) {
 				
+				advance(gathered_position);
+				alert("travel successful")
+				checker = 1;
+				console.log("checker = " + checker);
 			}
-	}
+
+			//exit the function
+			return;
+
+		}
+		else {
+			//pop up that says that u are a retard
+			alert("You are a retard!");
+
+		}
 	}
 
 }
