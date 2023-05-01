@@ -1382,6 +1382,7 @@ function updateMoney() {
         $("#moneybarrow" + i).show();
         document.getElementById("p" + i + "moneybar").style.border = "2px solid " + p_i.color;
         document.getElementById("p" + i + "money").innerHTML = p_i.money;
+		document.getElementById("p" + i + "tokens").innerHTML = p_i.tokens;
         document.getElementById("p" + i + "moneyname").innerHTML = p_i.name;
     }
 
@@ -2097,7 +2098,7 @@ function buyHouse(index) {
         }
 
         p.pay(sq.houseprice, 0);
-        addTokens();
+        addTokens(sq.tokens);
         updateOwned();
         updateMoney();
     }
