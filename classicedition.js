@@ -1,3 +1,28 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+// Monopoly
+// Javascript Game Code
+
+// Sqaure Class
+//Properties: 
+// // name: name of the square
+// // pricetext: text to display when showing the price of the square
+// // color: color of the square
+// // owner: player who owns the square (0 if unowned)
+// // mortgage: true if the square is mortgaged
+// // house: number of houses on the square
+// // hotel: number of hotels on the square
+// // token: token to display on the square
+// // groupNumber: group number of the square
+// // price: price of the square
+// // baserent: rent of the square with no houses
+// // rent1: rent of the square with 1 house
+// // rent2: rent of the square with 2 houses
+// // rent3: rent of the square with 3 houses
+// // rent4: rent of the square with 4 houses
+// // rent5: rent of the square with a hotel
+// // houseprice: price of a house on this square
+// // landcount: number of times the square has been landed on
+
 function Square(name, pricetext, color, price, groupNumber, baserent, rent1, rent2, rent3, rent4, rent5, token) {
     this.name = name;
     this.pricetext = pricetext;
@@ -16,7 +41,7 @@ function Square(name, pricetext, color, price, groupNumber, baserent, rent1, ren
     this.rent4 = rent4 || 0;
     this.rent5 = rent5 || 0;
     this.landcount = 0;
-
+    // Set house price based on group number
     if (groupNumber === 3 || groupNumber === 4) {
         this.houseprice = 50;
     } else if (groupNumber === 5 || groupNumber === 6) {
@@ -29,7 +54,10 @@ function Square(name, pricetext, color, price, groupNumber, baserent, rent1, ren
         this.houseprice = 0;
     }
 }
-
+// Card Class
+// Properties:
+// // text: text to display on the card
+// // action: function to call when the card is drawn = each card has a function that is called when the card is drawn
 function Card(text, action) {
   this.text = text;
   this.action = action;
@@ -53,6 +81,8 @@ function corrections() {
     '<img src="img/icon.jpg" height="60" width="78" alt="" style="position: relative; top: -20px;" />';
 }
 
+// Following functions are just a TAX functions that apply to the game in certain situations.
+
 function utiltext() {
   return '&nbsp;&nbsp;&nbsp;&nbsp;If one "Utility" is owned rent is 4 times amount shown on dice.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;If both "Utilitys" are owned rent is 10 times amount shown on dice.';
 }
@@ -75,8 +105,12 @@ function citytax() {
   $("#landed").show().text("You landed on City Tax. Pay $200.");
 }
 
+// var square is an array of all the squares on the board.
 var square = [];
 
+// The following initializes the properties for each square on the board by calling the Square() constructor.
+
+//Square(name, pricetext, color, price, groupNumber, baserent, rent1, rent2, rent3, rent4, rent5, group)
 square[0] = new Square("GO", "COLLECT $200 SALARY AS YOU PASS.", "#FFFFFF", -1);
 square[1] = new Square("Paper", "$60", "#8B4513", 60, 3, 2, 10, 30, 90, 160, 250, 2);
 square[2] = new Square("Community Chest", "FOLLOW INSTRUCTIONS ON TOP CARD", "#FFFFFF");
@@ -118,9 +152,11 @@ square[37] = new Square("Online Banking", "$350", "#0000FF", 350, 10, 35, 175, 5
 square[38] = new Square("LUXURY TAX", "Pay $100", "#FFFFFF");
 square[39] = new Square("Crypto", "$400", "#0000FF", 400, 10, 50, 200, 600, 1400, 1700, 2000, 8);
 
+// Community Chest
 var communityChestCards = [];
 var chanceCards = [];
 
+// Chest Cards
 communityChestCards[0] = new Card("Get out of Jail, Free. This card may be kept until needed or sold.", function(p) { p.communityChestJailCard = true; updateOwned();});
 communityChestCards[1] = new Card("You have won second prize in a innovation contest. Collect $10.", function() { addamount(10, 'Community Chest');});
 communityChestCards[2] = new Card("You get 50$ for visiting the library instead using Chat GPT.", function() { addamount(50, 'Community Chest');});
@@ -138,6 +174,8 @@ communityChestCards[13] = new Card("Advance to \"GO\" (Collect $200).", function
 communityChestCards[14] = new Card("You research facilities areon strike. Pay $40 per lab. $115 per research facility.", function() { streetrepairs(40, 115);});
 communityChestCards[15] = new Card("Go to Jail. Go directly to Jail. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
 
+
+// Chance Cards
 chanceCards[0] = new Card("GET OUT OF JAIL FREE. This card may be kept until needed or traded.", function(p) { p.chanceJailCard=true; updateOwned();});
 chanceCards[1] = new Card("Your Facilities need new technoligcal equipment. For each lab pay $25. For each research facility $100.", function() { streetrepairs(25, 100);});
 chanceCards[2] = new Card("Eco fine $15.", function() { subtractamount(15, 'Chance');});
