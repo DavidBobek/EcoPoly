@@ -1125,15 +1125,15 @@ function Player(name, color) {
     // this.AI = null;
 
     this.checkTokens = function (futureTokens) {
-        if (this.tokens + futureTokens <= 30) {
+        if (Number(this.tokens) + Number(futureTokens) <= 30) {
             return true;
         }
     };
-    this.addTokens = function (tokens) {
-        this.tokens += tokens;
+    this.addTokens = function (token) {
+        this.tokens = Number(token) + Number(this.tokens);
     };
     this.removeTokens = function (tokens) {
-        this.tokens -= tokens;
+        this.tokens = Number(this.tokens) - Number(token);
     };
 
     this.pay = function (amount, creditor) {
@@ -2071,7 +2071,8 @@ function buyHouse(index) {
         } else {
             return false;
         }
-    } else {
+    } 
+	else {
         for (var i = 0; i < 40; i++) {
             if (square[i].hotel === 1) {
                 hotelSum++;
@@ -2096,9 +2097,8 @@ function buyHouse(index) {
                 addAlert(p.name + " placed a hotel on " + sq.name + ".");
             }
         }
-
+		p.removeTokens(1);
         p.pay(sq.houseprice, 0);
-        addTokens(sq.tokens);
         updateOwned();
         updateMoney();
     }
@@ -2118,7 +2118,7 @@ function sellHouse(index) {
     }
 
     p.money += sq.houseprice * 0.5;
-    removeTokens(houseTokens);
+    addTokens(1);
     updateOwned();
     updateMoney();
 }
@@ -2248,20 +2248,24 @@ function buy() {
     var p = player[turn];
     var property = square[p.position];
     var cost = property.price;
+	var tokens = property.token;
 
-    if (p.money >= cost) {
+    if (p.money >= cost && p.checkTokens(tokens)) {
         p.pay(cost, 0);
 
         property.owner = turn;
         updateMoney();
         addAlert(p.name + " bought " + property.name + " for " + property.pricetext + ".");
-
+		p.addTokens(tokens);
         updateOwned();
 
         $("#landed").hide();
-    } else {
+    } else if(p.money < cost) {
         popup("<p>" + p.name + ", you need $" + (property.price - p.money) + " more to buy " + property.name + ".</p>");
     }
+	else{
+		popup("<p>" + "You have to many Tokens" + ".</p>");
+	}
 }
 
 function mortgage(index) {
