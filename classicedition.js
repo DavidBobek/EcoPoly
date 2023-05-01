@@ -155,20 +155,3 @@ chanceCards[13] = new Card("Take a trip to Spotify If you pass \"GO\" collect $2
 chanceCards[14] = new Card("ADVANCE to Walkman. If you pass \"GO\" collect $200.", function() { advance(11);});
 chanceCards[15] = new Card("Go to Jail. Go Directly to Jail. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
 
-const tokenFieldIndexes = {
-  2: [1, 3, 6, 7, 8, 9],
-  4: [11, 13, 14, 16, 18, 19],
-  6: [21, 23, 24, 26, 27, 29],
-  8: [31, 33, 34, 36, 37, 39],
-};
-
-for (let i = 0; i < square.length; i++) {
-  for (const token in tokenFieldIndexes) {
-    if (tokenFieldIndexes[token].includes(i)) {
-      square[i].token = token;
-      console.log(
-        `The square ${square[i].name} belongs to the Tokenfield ${square[i].token}`
-      );
-    }
-  }
-}
