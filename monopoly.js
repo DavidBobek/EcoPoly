@@ -2345,6 +2345,36 @@ function land(increasedRent) {
 
         game.addPropertyToAuctionQueue(p.position);
     }
+	if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
+		if (checking == true) {
+        var gathered_position = window.prompt("Please enter the number of the field you want to travel to", "5, 15, 25 or 35");
+		checking = false;
+		}
+		if (gathered_position == 5 || gathered_position == 15 || gathered_position == 25 || gathered_position == 35) {
+			gathered_position = parseInt(gathered_position);
+			p.position = gathered_position;
+			alert("You are travelling to field " + 15);
+			advance(gathered_position);
+			alert("You are now on field " + 15);
+			
+
+		}
+		else {
+			alert("You entered a wrong number");
+
+		}
+
+
+		
+		return;
+        //pop up window with the message "You are travelling to field 5, 15, 25 or 35" and a button "OK" and an input field for the actual number of the field
+        //if the number is correct, the player is moved to the field and the game continues
+        //if the number is incorrect, the player is moved to the field and the game continues
+        //if the player is moved to the field, he has to pay the rent for the field
+
+        
+        
+	}
 
     // Collect rent
     if (s.owner !== 0 && s.owner != turn && !s.mortgage) {
@@ -2445,44 +2475,11 @@ function land(increasedRent) {
     } else {
         chanceCommunityChest();
     }
+	checking = true;
 
     //implementing the travel on Railroads
     //if some player lands on a railroad, he is moved to field 5, 15, 25 or 35
-    if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
-        //pop up window with the message "You are travelling to field 5, 15, 25 or 35" and a button "OK" and an input field for the actual number of the field
-        //if the number is correct, the player is moved to the field and the game continues
-        //if the number is incorrect, the player is moved to the field and the game continues
-        //if the player is moved to the field, he has to pay the rent for the field
-
-        window.alert("You are travelling to field 5, 15, 25 or 35");
-        var gathered_position = window.prompt("Please enter the number of the field you want to travel to", "5, 15, 25 or 35");
-        if (gathered_position == 5 || gathered_position == 15 || gathered_position == 25 || gathered_position == 35) {
-            if (checker == 0) {
-                advance(gathered_position);
-                alert("travel successful");
-                checker = 1;
-                console.log("checker = " + checker);
-            }
-
-            //exit the function
-            return;
-        } else {
-            //pop up that says that u are a retard
-            alert("You are a retard!");
-        }
-    }
-
-    window.alert("You are travelling to field 5, 15, 25 or 35");
-    var gathered_position = window.prompt("Please enter the number of the field you want to travel to", "5, 15, 25 or 35");
-    if (gathered_position == 5 || gathered_position == 15 || gathered_position == 25 || gathered_position == 35) {
-        p.position = gathered_position;
-        updatePosition();
-        updateOwned();
-        updateMoney();
-        chanceCommunityChest();
-    } else {
-        p.position = p.position;
-    }
+    
 }
 //implementing the travel on Railroads = need to fix
 //if some player lands on a railroad, he is moved to field 5, 15, 25 or 35
