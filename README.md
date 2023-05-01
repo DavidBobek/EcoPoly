@@ -1,7 +1,21 @@
-# Heilbronn 2023
+# Ecopoly
 
 
-## This repository serves a space for developing our game!
+### How to run the game
+1. Locally
+* Clone the repository
+* Open index.html in your browser
+* Enjoy!
+2. Online: 
+* [https://p422l.itch.io/ecopoly] 
+
+
+
+## Technologies used
+* HTML
+* JavaScript
+* CSS
+
 
 
 
