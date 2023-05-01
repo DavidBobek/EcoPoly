@@ -2861,6 +2861,44 @@ function land(increasedRent) {
       p.position = p.position;
     }
   }
+  //implementing the travel on Railroads = need to fix
+  //if some player lands on a railroad, he is moved to field 5, 15, 25 or 35
+  if (
+    p.position == 5 ||
+    p.position == 15 ||
+    p.position == 25 ||
+    p.position == 35
+  ) {
+    //pop up window with the message "You are travelling to field 5, 15, 25 or 35" and a button "OK" and an input field for the actual number of the field
+    //if the number is correct, the player is moved to the field and the game continues
+    //if the number is incorrect, the player is moved to the field and the game continues
+    //if the player is moved to the field, he has to pay the rent for the field
+
+    window.alert("You are travelling to field 5, 15, 25 or 35");
+    var gathered_position = window.prompt(
+      "Please enter the number of the field you want to travel to",
+      "5, 15, 25 or 35"
+    );
+    if (
+      gathered_position == 5 ||
+      gathered_position == 15 ||
+      gathered_position == 25 ||
+      gathered_position == 35
+    ) {
+      const value = parseInt(gatgered_position);
+      console.log(value);
+
+      // Check if the parsed value is an integer
+      if (!isNaN(value) && Number.isInteger(value)) {
+        p.position = value;
+        updatePosition();
+        updateOwned();
+        updateMoney();
+      } else {
+        p.position = gathered_position;
+      }
+    }
+  }
 }
 
 function roll() {
