@@ -518,6 +518,11 @@ td {
 	border: none;
 	z-index: 0;
 }
+#cell13
+{
+	height: 50%;
+	background-color: #fb8930;
+}
 
 .menu-item:hover {
 	/* background-image: -webkit-linear-gradient(bottom,#000080,#4787ED);
@@ -744,6 +749,9 @@ td {
 }
 
 .cell-name {
+	font-weight: 700;
+	padding-top: 5%;
+	background-color: white;
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
