@@ -2118,7 +2118,7 @@ function sellHouse(index) {
     }
 
     p.money += sq.houseprice * 0.5;
-    addTokens(1);
+    p.addTokens(1);
     updateOwned();
     updateMoney();
 }
