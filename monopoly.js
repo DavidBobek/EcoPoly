@@ -2357,16 +2357,13 @@ function land(increasedRent) {
 		if (gathered_position == 5 || gathered_position == 15 || gathered_position == 25 || gathered_position == 35) {
 			gathered_position = parseInt(gathered_position);
 			p.position = gathered_position;
-			alert("You are travelling to field " + 15);
+			alert("You are travelling to field " + gathered_position);
 			advance(gathered_position);
-			alert("You are now on field " + 15);
+			
 			
 
 		}
-		else {
-			alert("You entered a wrong number");
-
-		}
+		
 
 
 		
