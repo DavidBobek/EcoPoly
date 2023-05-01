@@ -70,6 +70,8 @@ td {
 }
 
 #jail {
+	background-image: url(images/jail.jpg);
+	background-size: contain;
 	border: 1px solid black;
 	height: 65px;
 	width: 65px;
