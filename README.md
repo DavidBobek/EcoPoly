@@ -7,11 +7,12 @@
 
 
 
+
 ### Authors
-* @ DavidBobek
-* @ Melvin Paryiadan
-* @ Mike Fischer
-* @ Parimala Sabau
-* @ Nick Bullen
-* @ Shreya Mathews
-* @ Ajna Pleho
+* @ DavidBobek: Lead Developer
+* @ Melvin Paryiadan: Developer 
+* @ Mike Fischer: Developer
+* @ Parimala Sabau: Logo Designer
+* @ Nick Bullen: Graphic Designer
+* @ Shreya Mathews: Product Owner
+* @ Ajna Pleho: Graphic Designer 
