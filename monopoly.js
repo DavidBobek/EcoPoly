@@ -791,9 +791,13 @@ function Game() {
         for (var i = 0; i < 40; i++) {
             if (tradeObj.getProperty(i) === 1) {
                 square[i].owner = recipient.index;
+                initiator.tokens -= square[i].token;
+                recipient.tokens += square[i].token;
                 addAlert(recipient.name + " received " + square[i].name + " from " + initiator.name + ".");
             } else if (tradeObj.getProperty(i) === -1) {
                 square[i].owner = initiator.index;
+                recipient.tokens -= square[i].token;
+                initiator.tokens += square[i].token;
                 addAlert(initiator.name + " received " + square[i].name + " from " + recipient.name + ".");
             }
         }
@@ -2359,25 +2363,40 @@ function land(increasedRent) {
 
         game.addPropertyToAuctionQueue(p.position);
     }
-	if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
-		if (checking == true) {
-        var gathered_position = window.prompt("Please enter the number of the field you want to travel to", "5, 15, 25 or 35");
+	else if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
+        if (checking == true) {
+        var gathered_position = window.prompt("Please enter the field you want to travel to", "Bicycle, Train, Car or Plane");
 		checking = false;
 		}
-		if (gathered_position == 5 || gathered_position == 15 || gathered_position == 25 || gathered_position == 35) {
-			gathered_position = parseInt(gathered_position);
-			p.position = gathered_position;
-			alert("You are travelling to field " + gathered_position);
-			advance(gathered_position);
-			
-			
-
-		}
+        switch(gathered_position)
+        {
+            case "Bicycle":
+                p.position = 5;
+                alert("You are travelling to field Bicycle");
+                advance(p.position);
+                break;
+            case "Train":
+                p.position = 15;
+                alert("You are travelling to field Train");
+                advance(p.position);
+                break;
+            case "Car":
+                p.position = 25;
+                alert("You are travelling to field Car");
+                advance(p.position);
+                break;
+            case "Plane":
+                p.position = 35;
+                alert("You are travelling to field Plane");
+                advance(p.position);
+                break;
+                
+        }
 		
 
 
 		
-		return;
+		
         //pop up window with the message "You are travelling to field 5, 15, 25 or 35" and a button "OK" and an input field for the actual number of the field
         //if the number is correct, the player is moved to the field and the game continues
         //if the number is incorrect, the player is moved to the field and the game continues
@@ -2391,6 +2410,7 @@ function land(increasedRent) {
     if (s.owner !== 0 && s.owner != turn && !s.mortgage) {
         var groupowned = true;
         var rent;
+        var Tokens = 0.5;
 
         // Railroads = this is the idiot we need to modify
         if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
@@ -2402,16 +2422,28 @@ function land(increasedRent) {
 
             if (s.owner == square[5].owner) {
                 rent *= 2;
+                Tokens *=2;
             }
             if (s.owner == square[15].owner) {
                 rent *= 2;
+                Tokens *=2;
             }
             if (s.owner == square[25].owner) {
                 rent *= 2;
+                Tokens *=2;
             }
             if (s.owner == square[35].owner) {
                 rent *= 2;
+                Tokens *=2;
             }
+            addAlert(p.name + " paid $" + rent + " rent and " + Tokens + " Tokens to " + player[s.owner].name + ".");
+            p.pay(rent, s.owner);
+            p.addTokens(Tokens);
+            player[s.owner].removeTokens(Tokens);
+            player[s.owner].money += rent;
+            document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
+            checking = true;
+            return;
         } else if (p.position === 12) {
             if (increasedRent || square[28].owner == s.owner) {
                 rent = (die1 + die2) * 10;
@@ -2486,7 +2518,7 @@ function land(increasedRent) {
     } else {
         chanceCommunityChest();
     }
-	checking = true;
+    checking = true;
 
     //implementing the travel on Railroads
     //if some player lands on a railroad, he is moved to field 5, 15, 25 or 35
