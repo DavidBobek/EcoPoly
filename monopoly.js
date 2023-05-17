@@ -1404,7 +1404,7 @@ function updateMoney() {
 }
 
 function updateDice() {
-    var die0 = game.getDie(1);
+    /*var die0 = game.getDie(1);
     var die1 = game.getDie(2);
 
     $("#die0").show();
@@ -1443,7 +1443,7 @@ function updateDice() {
 
         document.getElementById("die0").title = "Die";
         document.getElementById("die1").title = "Die";
-    }
+    }*/
 }
 
 function updateOwned() {
@@ -1722,7 +1722,7 @@ function chanceCommunityChest() {
         }
 
         popup(
-            "<img src='images/community_chest_icon.png' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" +
+            "<img src='images/chest.jpg' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" +
                 communityChestCards[communityChestIndex].text +
                 "</div>",
             function () {
@@ -1746,7 +1746,7 @@ function chanceCommunityChest() {
         }
 
         popup(
-            "<img src='images/chance_icon.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" +
+            "<img src='images/ChanceCard.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" +
                 chanceCards[chanceIndex].text +
                 "</div>",
             function () {
@@ -1776,7 +1776,7 @@ function chanceAction(chanceIndex) {
     // $('#popupbackground').hide();
     // $('#popupwrap').hide();
     chanceCards[chanceIndex].action(p);
-
+    p.tokens += chanceCards[chanceIndex].tokenCost;
     updateMoney();
 
     if (chanceIndex !== 15 && !p.human) {
@@ -1923,10 +1923,19 @@ function travelling(destination, travelling_method, pass) {
             addAlert(p.name + " Travelling ");
             // enviromental impact
             //bike train car plane
-            //if travelling_method == "bike": than
-            //if travelling_method == "train": than
-            //if travelling_method == "car": than
-            //if travelling_method == "plane": than
+            if (travelling_method == "bike")
+            {
+
+            }
+            else if (travelling_method == "train"){
+
+            }
+            else if (travelling_method == "car"){
+                
+            }
+            else if (travelling_method == "plane"){
+                
+            }
         }
     }
     if (p.position < destination) {
@@ -2597,7 +2606,15 @@ function roll() {
         if (p.position >= 40) {
             p.position -= 40;
             p.money += 200;
-            addAlert(p.name + " collected a $200 salary for passing GO.");
+            if(p.tokens <=1)
+            {
+                p.tokens = 0;
+            }
+            else{
+                p.tokens -= 2;
+            }
+
+            addAlert(p.name + " collected a $200 salary and a carbon footprint reduction of 2 Tokens for passing GO.");
         }
 
         land();
@@ -2886,9 +2903,9 @@ window.onload = function () {
     }
 
     // Add images to enlarges.
-    document.getElementById("enlarge0token").innerHTML += '<img src="images/arrow_icon.png" height="40" width="136" alt="" />';
-    document.getElementById("enlarge20price").innerHTML += "<img src='images/free_parking_icon.png' height='80' width='72' alt='' style='position: relative; top: -20px;' />";
-    document.getElementById("enlarge38token").innerHTML += '<img src="images/tax_icon.png" height="60" width="70" alt="" style="position: relative; top: -20px;" />';
+    document.getElementById("enlarge0token").innerHTML += '<img src="images/arrow.png" height="40" width="136" alt="" />';
+    document.getElementById("enlarge20price").innerHTML += "<img src='images/FreeParking.png' height='80' width='72' alt='' style='position: relative; top: -20px;' />";
+    document.getElementById("enlarge38token").innerHTML += '<img src="images/cash.jpg" height="60" width="70" alt="" style="position: relative; top: -20px;" />';
 
     corrections();
 
@@ -2899,7 +2916,7 @@ window.onload = function () {
     document.getElementById("jail").enlargeId = "enlarge40";
 
     document.getElementById("enlarge-wrap").innerHTML +=
-        "<div id='enlarge40' class='enlarge'><div id='enlarge40color' class='enlarge-color'></div><br /><div id='enlarge40name' class='enlarge-name'>Jail</div><br /><div id='enlarge40price' class='enlarge-price'><img src='images/jake_icon.png' height='80' width='80' alt='' style='position: relative; top: -20px;' /></div><br /><div id='enlarge40token' class='enlarge-token'></div></div>";
+        "<div id='enlarge40' class='enlarge'><div id='enlarge40color' class='enlarge-color'></div><br /><div id='enlarge40name' class='enlarge-name'>Jail</div><br /><div id='enlarge40price' class='enlarge-price'><img src='images/jail.jpg' height='80' width='80' alt='' style='position: relative; top: -20px;' /></div><br /><div id='enlarge40token' class='enlarge-token'></div></div>";
 
     document.getElementById("enlarge40name").innerHTML = "Jail";
 

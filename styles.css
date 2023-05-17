@@ -67,6 +67,7 @@ td {
 	border-spacing: 3px;
 	margin: 25px;
 	float: left;
+	background-color: #13653f;
 }
 
 #jail {
@@ -85,8 +86,8 @@ td {
 #control {
 	position: absolute;
 	z-index: 9;
-	top: 300px;
-	left: 1300px;
+	top: 400px;
+	left: 1000px;
 	border: 2px solid black;
 	padding: 10px;
 	display: none;
@@ -534,11 +535,6 @@ td {
 	border: none;
 	z-index: 0;
 }
-#cell13
-{
-	height: 50%;
-	background-color: #fb8930;
-}
 
 .menu-item:hover {
 	/* background-image: -webkit-linear-gradient(bottom,#000080,#4787ED);
@@ -847,4 +843,7 @@ td {
 	top: 0px;
 	width: 15px;
 
+}
+.cell{
+	background-color: white;
 }
