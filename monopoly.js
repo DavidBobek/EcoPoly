@@ -2069,8 +2069,8 @@ function useJailCard() {
 }
 
 function buyHouse(index) {
-    var sq = square[index];
-    var p = player[sq.owner];
+    sq = square[index];
+    p = player[sq.owner];
     var houseSum = 0;
     var hotelSum = 0;
 
@@ -2106,10 +2106,11 @@ function buyHouse(index) {
                 addAlert(p.name + " placed a hotel on " + sq.name + ".");
             }
         }
-		p.removeTokens(1);
-        p.pay(sq.houseprice, 0);
+        p.tokens -= 1;
+        p.money -= sq.houseprice;
         updateOwned();
         updateMoney();
+
     }
 }
 
